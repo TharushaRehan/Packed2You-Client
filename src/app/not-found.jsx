@@ -9,7 +9,7 @@ const Custom404 = () => {
     <div className="flex flex-col justify-center items-center h-screen gap-6">
       <Image src="./404image.svg" alt="image" width={400} height={400} />
       <h1 className="text-4xl text-black">Oops! page not found</h1>
-      <Link href="/">
+      <Link href="/" className="mt-10">
         <Button>Back To Home</Button>
       </Link>
     </div>

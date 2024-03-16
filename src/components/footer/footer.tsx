@@ -13,6 +13,17 @@ import Facebook from "../../../public/facebook.svg";
 import Twitter from "../../../public/twitter.svg";
 import Pinterest from "../../../public/pinterest.svg";
 import Instagram from "../../../public/instagram.svg";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 //
 //
 const Footer = () => {
@@ -62,14 +73,38 @@ const Footer = () => {
               placeholder="Enter your email"
               className="rounded-full text-sm bg-neutral-600 text-white outline-none placeholder-neutral-400 h-[45px] pl-5 w-full"
             />
-            <Button
-              variant={"default"}
-              className="rounded-full text-lg"
-              onClick={handleSubscribe}
-              size={"lg"}
-            >
-              Subscribe
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant={"default"}
+                  className="rounded-full text-lg"
+                  size={"lg"}
+                >
+                  Subscribe
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    <p>
+                      You will subscribe to our newsletter with this email
+                      address : <span className="font-bold">{email}</span>
+                    </p>
+
+                    <p className="text-lg font-bold mt-5">
+                      This feature is still under development.
+                    </p>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleSubscribe}>
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
           <div className="flex gap-8">
             <Link href="" className="cursor-pointer">

@@ -1,6 +1,6 @@
 {
-  "id": "9c9b2edb-6600-4fb3-8c1c-9cbd5c2edd3d",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "208ed50d-bf93-4e20-8a6a-3b0d3d2493e5",
+  "prevId": "9c9b2edb-6600-4fb3-8c1c-9cbd5c2edd3d",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -229,7 +229,7 @@
         },
         "stock": {
           "name": "stock",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },

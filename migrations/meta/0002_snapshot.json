@@ -1,6 +1,6 @@
 {
-  "id": "9c9b2edb-6600-4fb3-8c1c-9cbd5c2edd3d",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "f5013f12-7037-498b-b77c-da95b5c09ce9",
+  "prevId": "208ed50d-bf93-4e20-8a6a-3b0d3d2493e5",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -215,8 +215,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "quantiy": {
-          "name": "quantiy",
+        "quantity": {
+          "name": "quantity",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -229,7 +229,7 @@
         },
         "stock": {
           "name": "stock",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },

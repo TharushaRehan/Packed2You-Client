@@ -1,8 +1,8 @@
 export const NavItemsList = [
-  {
-    name: "Home",
-    page: "home",
-  },
+  // {
+  //   name: "Home",
+  //   page: "home",
+  // },
   {
     name: "Shop",
     page: "shop",

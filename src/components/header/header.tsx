@@ -27,7 +27,7 @@ import Link from "next/link";
 const Header = () => {
   const [searchInput, setSearchInput] = useState("");
   const { user } = useSupabaseUser();
-  const currTab = "Home";
+  const currTab = "Shop";
 
   //
 

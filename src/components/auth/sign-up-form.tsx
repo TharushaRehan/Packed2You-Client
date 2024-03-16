@@ -6,11 +6,12 @@ import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { useToast } from "../ui/use-toast";
 import { actionSignUpUser } from "@/lib/sever-actions/auth-actions";
+import Link from "next/link";
 
 interface SignupFormProps {
   onTabChanges: (tab: string) => void;
 }
-const SignupForm: React.FC<SignupFormProps> = ({ onTabChanges }) => {
+const SignupForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
@@ -116,12 +117,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ onTabChanges }) => {
         </Button>
         <p className="text-gray-400">
           Already have an account?{" "}
-          <span
-            className="text-black cursor-pointer"
-            onClick={() => onTabChanges("Sign In")}
-          >
-            Login
-          </span>
+          <Link href="/auth/login">
+            <span className="text-black cursor-pointer">Login</span>
+          </Link>
         </p>
       </div>
     </div>
