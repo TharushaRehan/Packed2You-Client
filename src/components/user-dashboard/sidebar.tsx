@@ -34,7 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <p className="pl-5 pb-5 font-bold text-xl">Navigation</p>
       {allOptions.map((option, index) => (
         <div
-          key={index}
+          key={option}
           className={`${
             selectedOption === option
               ? "flex items-center gap-3 bg-[#EDF2EE] border-l-4 border-primary py-3 cursor-pointer px-5 text-[#1A1A1A] font-black"

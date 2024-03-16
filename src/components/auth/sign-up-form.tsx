@@ -56,7 +56,7 @@ const SignupForm = () => {
     if (error) {
       setError("");
     }
-  }, [email, password, confirmpassword]);
+  }, [email, password, confirmpassword, error]);
   //
 
   //

@@ -52,9 +52,9 @@ const SigninForm = () => {
 
   useEffect(() => {
     if (error) {
-      setError("");
+      setError(" ");
     }
-  }, [email, password]);
+  }, [email, password, error]);
   //
   return (
     <div>

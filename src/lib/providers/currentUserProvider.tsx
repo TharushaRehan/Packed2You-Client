@@ -45,7 +45,7 @@ export const AuthProvider: React.FC<SupabaseUserProviderProps> = ({
     const subscription = supabase.auth.onAuthStateChange(handleSessionChange);
 
     return () => subscription.data.subscription.unsubscribe();
-  }, []);
+  }, [supabase.auth]);
 
   return (
     <AuthContext.Provider value={{ user, setUser, session, setSession }}>
