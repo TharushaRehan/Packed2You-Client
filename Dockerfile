@@ -5,3 +5,4 @@ RUN npm install --production
 
 # Copy entire src directory, including the app folder
 COPY src/ .
+EXPOSE 3000
