@@ -17,7 +17,10 @@ ENV NODE_ENV production
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-ENV USER=10001
+RUN addgroup --system --gid 10001 nodejs
+RUN adduser --system --uid 10001 nextjs
+
+ENV USER nextjs
 EXPOSE 3000
 
 ENV HOSTNAME 0.0.0.0
