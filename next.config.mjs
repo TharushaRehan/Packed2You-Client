@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: process.env.NEXT_PUBLIC_SUPABASE_DOMAIN,
+        hostname: "ulnzftznhgmkvvmfeckb.supabase.co",
       },
     ],
     dangerouslyAllowSVG: true,
