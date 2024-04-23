@@ -26,6 +26,6 @@ const migrateDB = async () => {
 };
 
 if (process.env.NODE_ENV !== "production") {
-  migrateDB();
+  //migrateDB();
 }
 export default db;

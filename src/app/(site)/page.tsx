@@ -25,9 +25,12 @@ const GroceryShop = () => {
       <div className="flex flex-col gap-5 md:flex-row items-center justify-between pr-0 md:pr-5 lg:pr-10 border-b pb-5 md:pb-0">
         <Image src={Logo} alt="Logo" className="w-[200px] md:w-[300px]" />
         <div className="flex gap-5">
-          <Button variant={"outline"} className="gap-1">
-            Log In <LogIn size={20} />
-          </Button>
+          <Link href={"auth/login"}>
+            <Button variant={"outline"} className="gap-1">
+              Log In <LogIn size={20} />
+            </Button>
+          </Link>
+
           <Button className="gap-1">
             Get Started
             <ArrowRight size={20} />

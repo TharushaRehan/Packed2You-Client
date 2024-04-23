@@ -5,22 +5,22 @@ export const NavItemsList = [
   // },
   {
     name: "Shop",
-    page: "shop",
+    page: "/shop",
   },
   {
     name: "Combo",
-    page: "combo",
+    page: "/combo",
   },
   {
     name: "Wholesale",
-    page: "wholesale",
+    page: "/wholesale",
   },
   {
     name: "About Us",
-    page: "aboutus",
+    page: "/aboutus",
   },
   {
     name: "Contact Us",
-    page: "contactus",
+    page: "/contactus",
   },
 ];

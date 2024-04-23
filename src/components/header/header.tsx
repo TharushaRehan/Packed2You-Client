@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { shopDetails } from "@/constants/shop-details";
 import {
   ArrowRight,
   ArrowRightToLine,
+  LogIn,
   LogOut,
   MapPin,
   Menu,
@@ -16,8 +17,10 @@ import Image from "next/image";
 import { Heart, Search } from "lucide-react";
 import { Button } from "../ui/button";
 import { NavItemsList } from "@/constants/nav-items";
-import { useSupabaseUser } from "@/lib/providers/currentUserProvider";
+import { useSupabaseUser } from "@/lib/providers/supabase-user-provider";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 //
 //
 // interface HeaderProps {
@@ -26,8 +29,13 @@ import Link from "next/link";
 // }
 const Header = () => {
   const [searchInput, setSearchInput] = useState("");
+  const [currTab, setCurrTab] = useState("");
   const { user } = useSupabaseUser();
-  const currTab = "Shop";
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setCurrTab(pathname);
+  }, [pathname]);
 
   //
 
@@ -38,7 +46,7 @@ const Header = () => {
   //
   //
   return (
-    <section className="flex flex-col gap-5 p-10">
+    <section className="flex flex-col gap-5 py-5 px-10">
       <div className="flex flex-col md:flex-row items-center justify-between border-b-2 pb-5 border-0 gap-3">
         <div className="flex gap-3">
           <MapPin />
@@ -47,7 +55,7 @@ const Header = () => {
             <p>{shopDetails.address}</p>
           </div>
         </div>
-        <div className="flex gap-3 text-gray-500">
+        {/* <div className="flex gap-3 text-gray-500">
           <Link href={"/auth/login"}>
             <p
               className="cursor-pointer hover:text-gray-900 transition-all duration-300"
@@ -65,7 +73,7 @@ const Header = () => {
               Sign Up
             </p>
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="flex md:flex-row flex-wrap justify-between gap-5 items-center">
         <Image
@@ -91,21 +99,22 @@ const Header = () => {
             Search
           </Button>
         </div>
-        <div className="md:hidden flex items-center gap-3 cursor-pointer">
+        <div className="md:hidden cursor-pointer">
           {user ? (
-            <div
-            //onClick={() => onTabChanges("My Account")}
+            <Link
+              //onClick={() => onTabChanges("My Account")}
+              className="flex items-center gap-3"
+              href={"/account"}
             >
               <User className="text-gray-900" size={30} />
               <p>My Acoount</p>
-            </div>
+            </Link>
           ) : (
-            <Button
-              className="gap-2"
-              //onClick={() => onTabChanges("Sign In")}
-            >
-              Log In <ArrowRight size={20} />
-            </Button>
+            <Link href={"auth/login"}>
+              <Button variant={"outline"} className="gap-1">
+                Log In <LogIn size={20} />
+              </Button>
+            </Link>
           )}
         </div>
 
@@ -122,20 +131,15 @@ const Header = () => {
             </div>
           </div>
           <div className="flex items-center gap-3 cursor-pointer">
-            {user ? (
-              <div
-              //onClick={() => onTabChanges("My Account")}
+            {user && (
+              <Link
+                //onClick={() => onTabChanges("My Account")}
+                className="flex items-center gap-3"
+                href={"/account"}
               >
                 <User className="text-gray-900" size={30} />
                 <p>My Acoount</p>
-              </div>
-            ) : (
-              <Button
-                className="gap-2"
-                //onClick={() => onTabChanges("Sign In")}
-              >
-                Log In <ArrowRight size={20} />
-              </Button>
+              </Link>
             )}
           </div>
         </div>
@@ -145,7 +149,7 @@ const Header = () => {
           <Link
             key={index}
             href={item.page}
-            className={`${currTab === item.name ? currTabStyles : tabStyles}`}
+            className={`${currTab === item.page ? currTabStyles : tabStyles}`}
           >
             <p>{item.name}</p>
           </Link>

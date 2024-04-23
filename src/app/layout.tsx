@@ -3,7 +3,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import db from "@/lib/supabase/db";
-import { AuthProvider } from "@/lib/providers/currentUserProvider";
+import { SupabaseUserProvider } from "@/lib/providers/supabase-user-provider";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 
@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <AuthProvider>
+        <SupabaseUserProvider>
           <main>{children}</main>
           <Toaster />
-        </AuthProvider>
+        </SupabaseUserProvider>
       </body>
     </html>
   );

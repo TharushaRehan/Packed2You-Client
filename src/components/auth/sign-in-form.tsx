@@ -34,7 +34,7 @@ const SigninForm = () => {
           variant: "default",
           title: "Logged in successfully",
         });
-        router.refresh();
+        router.push("/shop");
       }
 
       // if (data) {

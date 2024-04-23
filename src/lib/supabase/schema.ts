@@ -19,11 +19,20 @@ export const users = pgTable("users", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
+});
+
+export const billingDetails = pgTable("billing_details", {
+  id: uuid("id").primaryKey().notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
   companyName: text("company_name"),
   streetAddress: text("street_address").notNull(),
   country: text("country").notNull(),
   states: text("states").notNull(),
-  zipcode: integer("zip_code").notNull(),
+  zipCode: integer("zip_code").notNull(),
 });
 
 export const categories = pgTable("categories", {

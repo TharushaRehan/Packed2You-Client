@@ -1,16 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { Camera, Eye, EyeOff } from "lucide-react";
+import { useSupabaseUser } from "@/lib/providers/supabase-user-provider";
+import { addUserDetails } from "@/lib/supabase/queries";
+import { useToast } from "../ui/use-toast";
+import { v4 } from "uuid";
+import { User } from "@/lib/supabase/supabase.types";
+import Loader from "@/components/global/Loader";
 
 const AccountSettings = () => {
+  const { user } = useSupabaseUser();
+  const { toast } = useToast();
   //
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState("");
   //
 
@@ -31,6 +39,50 @@ const AccountSettings = () => {
   const [secureText1, setSecureText1] = useState(true);
   const [secureText2, setSecureText2] = useState(true);
   const [secureText3, setSecureText3] = useState(true);
+
+  const [isSaving1, setIsSaving1] = useState(false);
+  const [isSaving2, setIsSaving2] = useState(false);
+  const [isSaving3, setIsSaving3] = useState(false);
+
+  useEffect(() => {}, []);
+
+  const onSaveAccountSettings = async () => {
+    if (!user || !email) return;
+    setIsSaving1(true);
+    const uuid = v4();
+
+    const userObject: User = {
+      id: uuid,
+      createdAt: new Date().toISOString(),
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+    };
+
+    const { data, error } = await addUserDetails(userObject);
+    if (!error) {
+      toast({
+        title: "Success",
+        description: "Details Updated",
+        variant: "default",
+      });
+    }
+
+    setIsSaving1(false);
+  };
+
+  const onSaveBillingDetails = async () => {
+    setIsSaving2(true);
+
+    setIsSaving2(false);
+  };
+
+  const onChangePassword = async () => {
+    setIsSaving3(true);
+
+    setIsSaving3(false);
+  };
   //
   return (
     <>
@@ -74,7 +126,13 @@ const AccountSettings = () => {
                 placeholder="(603) 555-0123"
               />
             </div>
-            <Button className="mt-8">Save Changes</Button>
+            <Button
+              className="mt-8 min-w-[160px]"
+              onClick={onSaveAccountSettings}
+              disabled={isSaving1}
+            >
+              {!isSaving1 ? "Save Changes" : <Loader />}
+            </Button>
           </div>
           <div className="items-center flex flex-col gap-5 mr-0 lg:mr-20 mb-10 lg:mb-0">
             <div className="rounded-full border w-[95px] h-[90px] md:w-[160px] md:h-[150px] items-center justify-center flex">
@@ -178,7 +236,13 @@ const AccountSettings = () => {
             />
           </div>
         </div>
-        <Button className="mt-8">Save Changes</Button>
+        <Button
+          className="mt-8 min-w-[160px]"
+          onClick={onSaveBillingDetails}
+          disabled={isSaving2}
+        >
+          {!isSaving2 ? "Save Changes" : <Loader />}
+        </Button>
       </div>
       <div className="mt-10 border-primary border rounded-xl px-10 py-5">
         <p className="text-xl pb-2 border-b mb-8">Change Password</p>
@@ -232,7 +296,13 @@ const AccountSettings = () => {
             </div>
           </div>
         </div>
-        <Button className="mt-8">Save Changes</Button>
+        <Button
+          className="mt-8 min-w-[160px]"
+          onClick={onChangePassword}
+          disabled={isSaving3}
+        >
+          {!isSaving3 ? "Save Changes" : <Loader />}
+        </Button>
       </div>
     </>
   );
